@@ -53,7 +53,7 @@ spec §10 우선순위(MVP → 그다음 → 완성본 전환)를 Phase로 쪼�
 | 단계 | 검증 |
 | --- | --- |
 | [x] 3-1 backend: 세션별 SSE 엔드포인트 + 이벤트 발행기 | MockMvc/WebTestClient로 이벤트 수신 테스트 |
-| 3-2 backend: `POST /internal/agent-events` (토큰 검증 → 스키마 검증 → SSE 중계) | 토큰 없음 401, 잘못된 이벤트 400, 정상 시 중계 테스트 |
+| [x] 3-2 backend: `POST /internal/agent-events` (토큰 검증 → 스키마 검증 → SSE 중계) | 토큰 없음 401, 잘못된 이벤트 400, 정상 시 중계 테스트 |
 | 3-3 frontend: SSE 훅 + 진행 바 + 작업 로그 | 가짜 EventSource로 컴포넌트 테스트 |
 | 3-4 인터뷰 화면 연결 | 수동 E2E: 입력 → 질문 → Requirements 표시 |
 

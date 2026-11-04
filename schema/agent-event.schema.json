@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doldari.local/schema/agent-event.schema.json",
+  "title": "AgentEvent",
+  "description": "agent → backend 콜백 본문 (POST /internal/agent-events). event는 SSE 이벤트와 같은 형식 (spec §7, §8).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["session_id", "event"],
+  "properties": {
+    "session_id": { "type": "string", "format": "uuid" },
+    "event": { "$ref": "sse-event.schema.json" }
+  }
+}
