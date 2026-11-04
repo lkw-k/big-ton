@@ -83,7 +83,7 @@ spec §10 우선순위(MVP → 그다음 → 완성본 전환)를 Phase로 쪼�
 | --- | --- |
 | 6-1 RawQuote → Quote LLM 추출, 필드별 source 연결 | 고정 RawQuote 픽스처로: 없는 값 null + missing_fields 기록 |
 | 6-2 `quote_update` 이벤트 발행 | SSE 테스트 |
-| 6-3 frontend: 비교표, "미확인" 배지, 출처 링크, 정렬 전환(표기 총액 ↔ 보정 총액) | 컴포넌트 테스트 |
+| [화면 완료, backend 연동 대기] 6-3 frontend: 비교표, "미확인" 배지, 출처 링크, 정렬 전환(표기 총액 ↔ 보정 총액) | 컴포넌트 테스트 |
 
 ## Phase 7. 확인 질문 + 추천 (spec §4.5)
 
@@ -98,7 +98,7 @@ spec §10 우선순위(MVP → 그다음 → 완성본 전환)를 Phase로 쪼�
 | 단계 | 검증 |
 | --- | --- |
 | 8-1 누락 비용 탐색 → `adjustment` 이벤트 (confirmed/estimated) | 이벤트에 status 누락 시 거부 테스트 |
-| 8-2 frontend: adjustment 수신 → 행 가산 → FLIP 재정렬 애니메이션 + 확정/추정 라벨 | 컴포넌트 테스트(정렬 결과) + 수동 시연 확인 |
+| [화면 완료, backend 연동 대기] 8-2 frontend: adjustment 수신 → 행 가산 → FLIP 재정렬 애니메이션 + 확정/추정 라벨 | 컴포넌트 테스트(정렬 결과) + 수동 시연 확인 |
 | 8-3 시연 시나리오 데이터 고정: A 1등 → 3등 역전 | spec §11 시나리오 1~5 수동 리허설 |
 
 **→ 여기까지 MVP. develop → main 머지, 시연 리허설.**
