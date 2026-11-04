@@ -51,3 +51,20 @@ dependencyManagement {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+// 실제 Groq 호출 테스트는 기본 test에서 빼고 groqTest로만 돌린다 (GROQ_API_KEY 없으면 skip).
+tasks.test {
+	useJUnitPlatform {
+		excludeTags("groq")
+	}
+}
+
+tasks.register<Test>("groqTest") {
+	description = "실제 Groq API로 구조화 출력을 실측한다."
+	group = "verification"
+	testClassesDirs = sourceSets.test.get().output.classesDirs
+	classpath = sourceSets.test.get().runtimeClasspath
+	useJUnitPlatform {
+		includeTags("groq")
+	}
+}
