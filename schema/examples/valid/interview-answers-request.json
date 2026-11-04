@@ -1,0 +1,20 @@
+{
+  "answers": [
+    {
+      "field": "budget",
+      "answer": "150만원"
+    },
+    {
+      "field": "quantity",
+      "answer": "10개"
+    },
+    {
+      "field": "due_date",
+      "answer": "2026-12-01까지"
+    },
+    {
+      "field": "need_install",
+      "answer": null
+    }
+  ]
+}
