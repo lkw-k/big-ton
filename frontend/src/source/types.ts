@@ -1,4 +1,10 @@
-import type { SseEvent } from '../contract'
+import type { Answer, CreateSessionResponse, Requirements, SseEvent } from '../contract'
+
+/** 인터뷰 API (backend 2-3). */
+export interface InterviewApi {
+  start(item: string): Promise<CreateSessionResponse>
+  answer(sessionId: string, answers: Answer[]): Promise<Requirements>
+}
 
 /** 세션 이벤트 흐름. 실제(SSE)와 시연(재생기) 공급원이 같은 모양을 따른다. */
 export interface EventStream {
