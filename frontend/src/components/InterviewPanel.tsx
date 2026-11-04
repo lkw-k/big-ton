@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import type { InterviewQuestion, Requirements } from '../contract'
 import { won } from '../format'
 import type { InterviewApi } from '../source/types'
@@ -34,7 +34,7 @@ export function InterviewPanel({ api, onComplete }: InterviewPanelProps) {
     }
   }
 
-  function start(event: FormEvent) {
+  function start(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     void run(async () => {
       const created = await api.start(item.trim())
@@ -42,7 +42,7 @@ export function InterviewPanel({ api, onComplete }: InterviewPanelProps) {
     })
   }
 
-  function submit(event: FormEvent, sessionId: string, questions: InterviewQuestion[]) {
+  function submit(event: SubmitEvent<HTMLFormElement>, sessionId: string, questions: InterviewQuestion[]) {
     event.preventDefault()
     // 답하지 않았거나 공백만 쓴 질문은 null로 보낸다 (추측 금지).
     const payload = questions.map(({ field }) => ({ field, answer: answers[field]?.trim() || null }))
