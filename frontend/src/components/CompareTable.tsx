@@ -60,18 +60,24 @@ export function CompareTable({ quotes, selectedVendor = null, onSelect }: Compar
         </thead>
         <tbody ref={body}>
           {ranked.map((q, index) => (
-            <tr
-              key={q.vendor}
-              data-flip-key={q.vendor}
-              className={q.vendor === selectedVendor ? 'is-selected' : undefined}
-              onClick={onSelect ? () => onSelect(q.vendor) : undefined}
-            >
+            <tr key={q.vendor} data-flip-key={q.vendor} className={q.vendor === selectedVendor ? 'is-selected' : undefined}>
               <td className="rank">
                 {index + 1}
                 <RankChange delta={changes[q.vendor] ?? 0} />
               </td>
               <th scope="row" className="vendor">
-                {q.vendor}
+                {onSelect ? (
+                  <button
+                    type="button"
+                    className="vendor__pick"
+                    aria-pressed={q.vendor === selectedVendor}
+                    onClick={() => onSelect(q.vendor)}
+                  >
+                    {q.vendor}
+                  </button>
+                ) : (
+                  q.vendor
+                )}
                 <span className="chip">{q.channel === 'web' ? '웹' : '메일'}</span>
               </th>
               <td className="num">
