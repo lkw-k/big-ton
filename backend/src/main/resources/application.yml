@@ -29,3 +29,6 @@ management:
     web:
       exposure:
         include: health
+
+llm:
+  max-attempts: 3
