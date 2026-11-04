@@ -47,8 +47,10 @@ export function CostChart({ quotes, budget, recommendedVendor = null }: CostChar
 
       <div className="chart__plot">
         {budget !== null && (
-          <div className="chart__budget" style={{ left: percent(budget) }}>
-            <span className="chart__budget-label">예산 {won(budget)}</span>
+          <div className="chart__scale">
+            <div className="chart__budget" style={{ left: percent(budget) }}>
+              <span className="chart__budget-label">예산 {won(budget)}</span>
+            </div>
           </div>
         )}
         <ol className="chart__rows" ref={list} aria-label={`업체별 ${TERMS.realCost}`}>
@@ -90,9 +92,9 @@ export function CostChart({ quotes, budget, recommendedVendor = null }: CostChar
                       />
                     )
                   })}
-                  <span className="chart__total">{won(q.adjusted_total!)}</span>
                 </div>
               )}
+              {q.total_price !== null && <span className="chart__total">{won(q.adjusted_total!)}</span>}
               {q.adjustments.length > 0 && (
                 <p className="chart__note">
                   {TERMS.quotedPrice} {won(q.total_price!)} + {TERMS.hiddenCost}{' '}

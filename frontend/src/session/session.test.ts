@@ -92,7 +92,7 @@ describe('reduce', () => {
       { vendor: 'A업체', field: 'install_included', question: '설치 포함인가요?' },
     ])
     expect(state.recommendation).toEqual({ vendor: 'B업체', score: 82, reasons: ['설치 포함'] })
-    expect(state.approvals).toEqual([{ kind: 'send_mail', draft_id: 'd1' }])
+    expect(state.approvals).toEqual([{ kind: 'send_mail', draft_id: 'd1', step: 0 }])
   })
 })
 
