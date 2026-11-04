@@ -24,7 +24,7 @@ describe('FollowUpPanel', () => {
   test('질문이 없으면 무엇을 기다리는지 알려 준다', () => {
     render(<FollowUpPanel followUps={[]} />)
 
-    expect(screen.getByText('빠진 항목이 발견되면 업체별 확인 질문이 여기에 생깁니다')).toBeInTheDocument()
+    expect(screen.getByText('견적에 빠진 내용이 있으면 업체에 물어볼 질문을 만들어 드려요')).toBeInTheDocument()
   })
 })
 
@@ -37,13 +37,13 @@ describe('RecommendationPanel', () => {
     )
 
     expect(screen.getByRole('heading', { name: 'B업체' })).toBeInTheDocument()
-    expect(screen.getByRole('meter', { name: '적합도' })).toHaveAttribute('aria-valuenow', '82')
+    expect(screen.getByRole('meter', { name: '조건 일치도' })).toHaveAttribute('aria-valuenow', '82')
     expect(screen.getAllByRole('listitem')).toHaveLength(2)
   })
 
   test('추천 전에는 빈 상태를 보여 준다', () => {
     render(<RecommendationPanel recommendation={null} />)
 
-    expect(screen.getByText('견적 정리가 끝나면 요구 조건에 가장 맞는 업체를 추천합니다')).toBeInTheDocument()
+    expect(screen.getByText('비교가 끝나면 요구 조건에 가장 잘 맞는 업체를 추천해 드려요')).toBeInTheDocument()
   })
 })

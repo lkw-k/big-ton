@@ -17,6 +17,8 @@ export interface Recommendation {
 export interface Approval {
   kind: 'send_mail' | 'submit_form'
   draft_id: string
+  /** 요청이 들어온 단계. 수집 중 요청과 연락 단계 요청을 나눠 보여 주는 데 쓴다. */
+  step: number
 }
 
 export interface SessionState {
@@ -53,7 +55,7 @@ export function reduce(state: SessionState, event: SseEvent, at: string): Sessio
     case 'adjustment':
       return { ...state, quotes: state.quotes.map((q) => (q.vendor === event.vendor ? addAdjustment(q, event) : q)) }
     case 'approval_required':
-      return { ...state, approvals: [...state.approvals, { kind: event.kind, draft_id: event.draft_id }] }
+      return { ...state, approvals: [...state.approvals, { kind: event.kind, draft_id: event.draft_id, step: state.step }] }
     case 'follow_up':
       return {
         ...state,
