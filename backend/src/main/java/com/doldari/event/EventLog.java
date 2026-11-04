@@ -40,6 +40,10 @@ public class EventLog {
 		this.createdAt = Instant.now();
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 	public SseEvent getPayload() {
 		return payload;
 	}
