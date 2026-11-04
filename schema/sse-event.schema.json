@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doldari.local/schema/sse-event.schema.json",
+  "title": "SseEvent",
+  "description": "프론트로 가는 SSE 이벤트. Python 콜백도 같은 형식 (spec §8).",
+  "oneOf": [
+    { "$ref": "#/$defs/step" },
+    { "$ref": "#/$defs/log" },
+    { "$ref": "#/$defs/browser" },
+    { "$ref": "#/$defs/quoteUpdate" },
+    { "$ref": "#/$defs/adjustment" },
+    { "$ref": "#/$defs/approvalRequired" }
+  ],
+  "$defs": {
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "step"],
+      "properties": {
+        "type": { "const": "step" },
+        "step": { "type": "integer", "minimum": 1, "maximum": 6 }
+      }
+    },
+    "log": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "text"],
+      "properties": {
+        "type": { "const": "log" },
+        "text": { "type": "string", "minLength": 1 },
+        "vendor": { "type": "string", "minLength": 1 }
+      }
+    },
+    "browser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "vendor", "screenshot_url"],
+      "properties": {
+        "type": { "const": "browser" },
+        "vendor": { "type": "string", "minLength": 1 },
+        "screenshot_url": { "type": "string", "minLength": 1 }
+      }
+    },
+    "quoteUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "vendor", "quote"],
+      "properties": {
+        "type": { "const": "quote_update" },
+        "vendor": { "type": "string", "minLength": 1 },
+        "quote": { "$ref": "quote.schema.json" }
+      }
+    },
+    "adjustment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "vendor", "label", "amount", "status"],
+      "properties": {
+        "type": { "const": "adjustment" },
+        "vendor": { "type": "string", "minLength": 1 },
+        "label": { "$ref": "quote.schema.json#/$defs/adjustment/properties/label" },
+        "amount": { "$ref": "quote.schema.json#/$defs/adjustment/properties/amount" },
+        "status": { "$ref": "quote.schema.json#/$defs/adjustment/properties/status" }
+      }
+    },
+    "approvalRequired": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "kind", "draft_id"],
+      "properties": {
+        "type": { "const": "approval_required" },
+        "kind": { "enum": ["send_mail", "submit_form"] },
+        "draft_id": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

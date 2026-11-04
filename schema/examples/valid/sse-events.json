@@ -1,0 +1,61 @@
+[
+  {
+    "type": "step",
+    "step": 2
+  },
+  {
+    "type": "log",
+    "text": "B업체 사이트에서 납기 확인 중",
+    "vendor": "B"
+  },
+  {
+    "type": "browser",
+    "vendor": "B",
+    "screenshot_url": "/screenshots/b-1.png"
+  },
+  {
+    "type": "quote_update",
+    "vendor": "A",
+    "quote": {
+      "vendor": "A업체",
+      "channel": "web",
+      "total_price": 1200000,
+      "lead_time_days": 14,
+      "install_included": null,
+      "shipping_fee": 50000,
+      "warranty_months": null,
+      "missing_fields": [
+        "install_included",
+        "warranty_months"
+      ],
+      "adjustments": [
+        {
+          "label": "설치비",
+          "amount": 150000,
+          "status": "confirmed"
+        }
+      ],
+      "adjusted_total": 1350000,
+      "sources": [
+        {
+          "field": "total_price",
+          "type": "url",
+          "ref": "https://a-vendor.example/quote",
+          "snippet": "총 견적 1,200,000원"
+        }
+      ]
+    }
+  },
+  {
+    "type": "adjustment",
+    "vendor": "A",
+    "label": "설치비",
+    "amount": 150000,
+    "status": "confirmed"
+  },
+  {
+    "type": "approval_required",
+    "kind": "send_mail",
+    "draft_id": "draft-1"
+  }
+]

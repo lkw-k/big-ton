@@ -1,0 +1,30 @@
+{
+  "vendor": "A업체",
+  "channel": "web",
+  "total_price": 1200000,
+  "lead_time_days": 14,
+  "install_included": null,
+  "shipping_fee": 50000,
+  "warranty_months": null,
+  "missing_fields": [
+    "install_included",
+    "warranty_months"
+  ],
+  "adjustments": [
+    {
+      "label": "설치비",
+      "amount": 150000,
+      "status": "confirmed"
+    }
+  ],
+  "adjusted_total": 1350000,
+  "sources": [
+    {
+      "field": "total_price",
+      "type": "url",
+      "ref": "https://a-vendor.example/quote",
+      "snippet": "총 견적 1,200,000원"
+    }
+  ],
+  "discount": 10000
+}
