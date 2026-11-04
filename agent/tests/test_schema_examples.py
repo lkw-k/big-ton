@@ -14,6 +14,7 @@ SCHEMA_NAMES = [
     "sse-event",
     "interview",
     "agent-event",
+    "mail-draft",
 ]
 
 

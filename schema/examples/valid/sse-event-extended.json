@@ -1,0 +1,9 @@
+[
+  { "type": "follow_up", "vendor": "A업체", "field": "install_included", "question": "설치비가 견적에 포함되어 있나요?" },
+  {
+    "type": "recommendation",
+    "vendor": "B업체",
+    "score": 82,
+    "reasons": ["설치 포함 보정 총액이 가장 낮음", "납기 12일로 요구 납기 충족", "A/S 24개월 확인됨"]
+  }
+]

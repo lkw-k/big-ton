@@ -58,3 +58,27 @@ export type SseEvent =
   | { type: 'quote_update'; vendor: string; quote: Quote }
   | ({ type: 'adjustment'; vendor: string } & Adjustment)
   | { type: 'approval_required'; kind: 'send_mail' | 'submit_form'; draft_id: string }
+  | ({ type: 'follow_up' } & FollowUpQuestion)
+  | { type: 'recommendation'; vendor: string; score: number; reasons: string[] }
+
+export interface Citation {
+  vendor: string
+  field:
+    | 'total_price'
+    | 'adjusted_total'
+    | 'lead_time_days'
+    | 'install_included'
+    | 'shipping_fee'
+    | 'warranty_months'
+  value: number | boolean
+}
+
+export interface MailDraft {
+  draft_id: string
+  kind: 'request' | 'order' | 'negotiation'
+  vendor: string
+  to: string
+  subject: string
+  body: string
+  citations: Citation[]
+}

@@ -9,7 +9,9 @@
     { "$ref": "#/$defs/browser" },
     { "$ref": "#/$defs/quoteUpdate" },
     { "$ref": "#/$defs/adjustment" },
-    { "$ref": "#/$defs/approvalRequired" }
+    { "$ref": "#/$defs/approvalRequired" },
+    { "$ref": "#/$defs/followUp" },
+    { "$ref": "#/$defs/recommendation" }
   ],
   "$defs": {
     "step": {
@@ -71,6 +73,34 @@
         "type": { "const": "approval_required" },
         "kind": { "enum": ["send_mail", "submit_form"] },
         "draft_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "followUp": {
+      "description": "missing_fields로 만든 확인 질문 (spec §4.5, FollowUpQuestion 형태).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "vendor", "field", "question"],
+      "properties": {
+        "type": { "const": "follow_up" },
+        "vendor": { "type": "string", "minLength": 1 },
+        "field": { "$ref": "quote.schema.json#/$defs/nullableField" },
+        "question": { "type": "string", "minLength": 1 }
+      }
+    },
+    "recommendation": {
+      "description": "적합도 점수로 고른 추천 업체 1곳과 이유 (spec §4.5).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "vendor", "score", "reasons"],
+      "properties": {
+        "type": { "const": "recommendation" },
+        "vendor": { "type": "string", "minLength": 1 },
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "reasons": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
       }
     }
   }
