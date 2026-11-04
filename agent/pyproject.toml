@@ -1,0 +1,31 @@
+[project]
+name = "agent"
+version = "0.1.0"
+description = "돌다리 브라우저 에이전트"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=2.4.0",
+    "fastapi>=0.162.0",
+    "groq>=1.7.0",
+    "httpx>=0.28.1",
+    "playwright>=1.64.1",
+    "pydantic>=2.14.2",
+    "pydantic-settings>=2.16.2",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.4.1.post1",
+    "ruff>=0.17.3",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
