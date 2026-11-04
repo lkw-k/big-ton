@@ -46,7 +46,7 @@ spec §10 우선순위(MVP → 그다음 → 완성본 전환)를 Phase로 쪼�
 | [x] 2-1 backend: `ChatClient` + 프롬프트 파일 로딩 + 스키마 검증·재시도 래퍼 | stub ChatClient로 "잘못된 JSON → 재시도 → 실패 시 미확인" 테스트 |
 | [구조 완료, 실측 대기] 2-2 Groq 구조화 출력 실측 (모델 선정, spec §12) | 태그된 통합 테스트로 실제 Groq 응답이 스키마 통과 (`GROQ_API_KEY` 설정 후 `./gradlew groqTest`) |
 | [x] 2-3 인터뷰 API: 물품 입력 → 질문(≤5개) → 답변 → Requirements | 질문 5개 초과 시 잘라냄, 미응답 필드 null 테스트 |
-| 2-4 agent: `LLMClient` 인터페이스 + `GroqClient` / `ClaudeClient`, `LLM_PROVIDER` 선택 | 설정값에 따라 구현체 선택 테스트 |
+| [x] 2-4 agent: `LLMClient` 인터페이스 + `GroqClient` / `ClaudeClient`, `LLM_PROVIDER` 선택 | 설정값에 따라 구현체 선택 테스트 |
 
 ## Phase 3. 실시간 표시 뼈대 (spec §8)
 
