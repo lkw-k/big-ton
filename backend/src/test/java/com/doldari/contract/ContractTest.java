@@ -36,7 +36,10 @@ class ContractTest {
 		return Stream.of(
 				arguments("requirements.json", Requirements.class),
 				arguments("quote.json", Quote.class),
-				arguments("follow-up-question.json", FollowUpQuestion.class));
+				arguments("follow-up-question.json", FollowUpQuestion.class),
+				arguments("interview-create-session-request.json", CreateSessionRequest.class),
+				arguments("interview-create-session-response.json", CreateSessionResponse.class),
+				arguments("interview-answers-request.json", AnswersRequest.class));
 	}
 
 	@ParameterizedTest
@@ -59,7 +62,10 @@ class ContractTest {
 				arguments("quote-adjustment-no-status.json", Quote.class),
 				arguments("sse-event-adjustment-no-status.json", SseEvent.class),
 				arguments("sse-event-quote-update-bad-quote.json", SseEvent.class),
-				arguments("requirements-missing-item.json", Requirements.class));
+				arguments("requirements-missing-item.json", Requirements.class),
+				arguments("interview-blank-item.json", CreateSessionRequest.class),
+				arguments("interview-answer-missing-field.json", AnswersRequest.class),
+				arguments("interview-too-many-questions.json", CreateSessionResponse.class));
 	}
 
 	@ParameterizedTest
@@ -77,7 +83,8 @@ class ContractTest {
 				arguments("sse-event-unknown-type.json", SseEvent.class),
 				arguments("sse-event-approval-bad-kind.json", SseEvent.class),
 				arguments("requirements-bad-date.json", Requirements.class),
-				arguments("follow-up-question-bad-field.json", FollowUpQuestion.class));
+				arguments("follow-up-question-bad-field.json", FollowUpQuestion.class),
+				arguments("interview-unknown-field.json", AnswersRequest.class));
 	}
 
 	@ParameterizedTest
