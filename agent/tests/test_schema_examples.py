@@ -7,7 +7,7 @@ from referencing import Registry, Resource
 
 SCHEMA_DIR = Path(__file__).resolve().parents[2] / "schema"
 EXAMPLES_DIR = SCHEMA_DIR / "examples"
-SCHEMA_NAMES = ["requirements", "quote", "follow-up-question", "sse-event"]
+SCHEMA_NAMES = ["requirements", "quote", "follow-up-question", "sse-event", "interview"]
 
 
 def _load(path: Path):

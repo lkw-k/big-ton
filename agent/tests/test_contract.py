@@ -45,9 +45,15 @@ def test_valid_sse_events_round_trip_all_types():
         _assert_round_trip(SSE_EVENT, event)
 
 
-@pytest.mark.parametrize(
-    "example", sorted((EXAMPLES_DIR / "invalid").glob("*.json")), ids=lambda p: p.name
+# agent가 쓰는 계약만 대상. interview API는 backend↔frontend 계약이라 제외한다.
+INVALID = sorted(
+    p
+    for p in (EXAMPLES_DIR / "invalid").glob("*.json")
+    if p.stem.startswith(tuple(prefix for prefix, _ in ADAPTERS))
 )
+
+
+@pytest.mark.parametrize("example", INVALID, ids=lambda p: p.name)
 def test_invalid_example_rejected(example):
     with pytest.raises(ValidationError):
         _adapter_for(example).validate_json(example.read_text(encoding="utf-8"))
