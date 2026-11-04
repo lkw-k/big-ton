@@ -61,6 +61,32 @@ export type SseEvent =
   | ({ type: 'follow_up' } & FollowUpQuestion)
   | { type: 'recommendation'; vendor: string; score: number; reasons: string[] }
 
+// schema/interview.schema.json
+export type InterviewField = 'budget' | 'due_date' | 'need_install' | 'quantity' | 'notes'
+
+export interface InterviewQuestion {
+  field: InterviewField
+  question: string
+}
+
+export interface CreateSessionRequest {
+  item: string
+}
+
+export interface CreateSessionResponse {
+  session_id: string
+  questions: InterviewQuestion[]
+}
+
+export interface Answer {
+  field: InterviewField
+  answer: string | null
+}
+
+export interface AnswersRequest {
+  answers: Answer[]
+}
+
 export interface Citation {
   vendor: string
   field:

@@ -5,7 +5,17 @@ import followUpJson from '../../schema/examples/valid/follow-up-question.json'
 import sseEventsJson from '../../schema/examples/valid/sse-events.json'
 import sseEventsExtendedJson from '../../schema/examples/valid/sse-event-extended.json'
 import mailDraftJson from '../../schema/examples/valid/mail-draft.json'
-import type { FollowUpQuestion, MailDraft, Quote, Requirements, SseEvent } from './contract'
+import createSessionResponseJson from '../../schema/examples/valid/interview-create-session-response.json'
+import answersRequestJson from '../../schema/examples/valid/interview-answers-request.json'
+import type {
+  AnswersRequest,
+  CreateSessionResponse,
+  FollowUpQuestion,
+  MailDraft,
+  Quote,
+  Requirements,
+  SseEvent,
+} from './contract'
 
 // 아래 리터럴은 tsc가 타입을, 테스트가 schema 예제와의 일치를 검사한다.
 const requirements = {
@@ -81,6 +91,26 @@ const mailDraft = {
   ],
 } satisfies MailDraft
 
+const createSessionResponse = {
+  session_id: '3f2b8c1e-5a4d-4e7f-9b2a-1c6d8e0f4a21',
+  questions: [
+    { field: 'budget', question: '예산은 어느 정도인가요?' },
+    { field: 'due_date', question: '언제까지 필요하신가요?' },
+    { field: 'need_install', question: '설치도 필요하신가요?' },
+    { field: 'quantity', question: '수량은 몇 개인가요?' },
+    { field: 'notes', question: '그 밖에 원하시는 조건이 있나요?' },
+  ],
+} satisfies CreateSessionResponse
+
+const answersRequest = {
+  answers: [
+    { field: 'budget', answer: '150만원' },
+    { field: 'quantity', answer: '10개' },
+    { field: 'due_date', answer: '2026-12-01까지' },
+    { field: 'need_install', answer: null },
+  ],
+} satisfies AnswersRequest
+
 // 거부되어야 하는 형태. 타입이 받아들이면 @ts-expect-error가 미사용 에러가 되어 빌드가 깨진다.
 const { warranty_months: _omitted, ...quoteMissingKey } = quote
 export const rejected = [
@@ -105,4 +135,6 @@ test('TS 계약 리터럴이 schema 예제와 같다', () => {
   expect(sseEvents).toEqual(sseEventsJson)
   expect(sseEventsExtended).toEqual(sseEventsExtendedJson)
   expect(mailDraft).toEqual(mailDraftJson)
+  expect(createSessionResponse).toEqual(createSessionResponseJson)
+  expect(answersRequest).toEqual(answersRequestJson)
 })
