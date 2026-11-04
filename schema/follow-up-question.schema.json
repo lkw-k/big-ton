@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doldari.local/schema/follow-up-question.schema.json",
+  "title": "FollowUpQuestion",
+  "description": "업체별 missing_fields로 만든 확인 질문 (spec §4.5, §5.3).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["vendor", "field", "question"],
+  "properties": {
+    "vendor": { "type": "string", "minLength": 1 },
+    "field": { "$ref": "quote.schema.json#/$defs/nullableField" },
+    "question": { "type": "string", "minLength": 1 }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "session_id": "3f2b8c1e-5a4d-4e7f-9b2a-1c6d8e0f4a21",
+  "questions": [
+    {
+      "field": "budget",
+      "question": "예산은 어느 정도인가요?"
+    },
+    {
+      "field": "due_date",
+      "question": "언제까지 필요하신가요?"
+    },
+    {
+      "field": "need_install",
+      "question": "설치도 필요하신가요?"
+    },
+    {
+      "field": "quantity",
+      "question": "수량은 몇 개인가요?"
+    },
+    {
+      "field": "notes",
+      "question": "그 밖에 원하시는 조건이 있나요?"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doldari.local/schema/requirements.schema.json",
+  "title": "Requirements",
+  "description": "인터뷰 결과. 사용자가 답하지 않은 항목은 null (spec §4.1, §5.1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["item", "budget", "due_date", "need_install", "quantity", "notes"],
+  "properties": {
+    "item": { "type": "string", "minLength": 1 },
+    "budget": { "type": ["integer", "null"], "minimum": 0 },
+    "due_date": { "type": ["string", "null"], "format": "date" },
+    "need_install": { "type": ["boolean", "null"] },
+    "quantity": { "type": ["integer", "null"], "minimum": 1 },
+    "notes": { "type": ["string", "null"] }
+  }
+}
