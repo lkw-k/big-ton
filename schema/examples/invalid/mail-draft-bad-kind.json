@@ -1,0 +1,9 @@
+{
+  "draft_id": "draft-1",
+  "kind": "spam",
+  "vendor": "A업체",
+  "to": "sales@a-vendor.example",
+  "subject": "제목",
+  "body": "본문",
+  "citations": []
+}

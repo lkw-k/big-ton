@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doldari.local/schema/mail-draft.schema.json",
+  "title": "MailDraft",
+  "description": "발송 전 최종 미리보기용 메일 초안 (spec §4.6, §4.8). 사용자 승인 후에만 발송된다.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["draft_id", "kind", "vendor", "to", "subject", "body", "citations"],
+  "properties": {
+    "draft_id": { "type": "string", "minLength": 1 },
+    "kind": {
+      "description": "request: 견적 요청, order: 선택 업체 문의·발주, negotiation: 빅딜 걸기(협상)",
+      "enum": ["request", "order", "negotiation"]
+    },
+    "vendor": { "type": "string", "minLength": 1 },
+    "to": { "type": "string", "format": "email" },
+    "subject": { "type": "string", "minLength": 1 },
+    "body": { "type": "string", "minLength": 1 },
+    "citations": {
+      "description": "본문이 인용한 타 업체 수치. 저장된 Quote 값에서만 가져온다 (도메인 규칙 6).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["vendor", "field", "value"],
+        "properties": {
+          "vendor": { "type": "string", "minLength": 1 },
+          "field": { "enum": ["total_price", "adjusted_total", "lead_time_days", "install_included", "shipping_fee", "warranty_months"] },
+          "value": { "type": ["integer", "boolean"] }
+        }
+      }
+    }
+  }
+}

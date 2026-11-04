@@ -129,6 +129,13 @@ spec §10 우선순위(MVP → 그다음 → 완성본 전환)를 Phase로 쪼�
 
 ---
 
+## backend 재개 시 할 일 (프론트 우선 진행 중 추가된 계약)
+
+- `schema/sse-event.schema.json`에 `follow_up`, `recommendation` 이벤트 추가됨 → backend `SseEvent` record, agent pydantic `SseEvent`에 반영 (7-1, 7-2에서 발행)
+- `schema/mail-draft.schema.json` 신규 → backend 메일 초안 API(9-1, 10-1)에서 사용
+
+---
+
 ## 미결정 사항 (spec §12) — 해당 Phase 시작 전 결정
 
 | 항목 | 필요 시점 | 결정 |
