@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doldari.local/schema/quote.schema.json",
+  "title": "Quote",
+  "description": "통일 양식 견적. 모르는 값은 null(0 대체 금지) + missing_fields에 기록 (spec §5.2).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "vendor",
+    "channel",
+    "total_price",
+    "lead_time_days",
+    "install_included",
+    "shipping_fee",
+    "warranty_months",
+    "missing_fields",
+    "adjustments",
+    "adjusted_total",
+    "sources"
+  ],
+  "properties": {
+    "vendor": { "type": "string", "minLength": 1 },
+    "channel": { "enum": ["web", "mail"] },
+    "total_price": { "type": ["integer", "null"], "minimum": 0 },
+    "lead_time_days": { "type": ["integer", "null"], "minimum": 0 },
+    "install_included": { "type": ["boolean", "null"] },
+    "shipping_fee": { "type": ["integer", "null"], "minimum": 0 },
+    "warranty_months": { "type": ["integer", "null"], "minimum": 0 },
+    "missing_fields": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/nullableField" }
+    },
+    "adjustments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/adjustment" }
+    },
+    "adjusted_total": {
+      "description": "total_price + Σ adjustments.amount. total_price가 null이면 null.",
+      "type": ["integer", "null"]
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    }
+  },
+  "$defs": {
+    "nullableField": {
+      "enum": ["total_price", "lead_time_days", "install_included", "shipping_fee", "warranty_months"]
+    },
+    "adjustment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "amount", "status"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "amount": { "type": "integer" },
+        "status": { "enum": ["confirmed", "estimated"] }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "type", "ref", "snippet"],
+      "properties": {
+        "field": {
+          "enum": [
+            "vendor",
+            "total_price",
+            "lead_time_days",
+            "install_included",
+            "shipping_fee",
+            "warranty_months",
+            "adjustments"
+          ]
+        },
+        "type": { "enum": ["url", "mail", "attachment"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "snippet": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
