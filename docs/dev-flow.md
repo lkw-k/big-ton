@@ -37,7 +37,7 @@ spec §10 우선순위(MVP → 그다음 → 완성본 전환)를 Phase로 쪼�
 | [x] 1-3 agent: pydantic 모델 | 계약 테스트: 같은 예제로 검증 통과 |
 | [x] 1-4 frontend: TS 타입 | `tsc` 통과 |
 | [x] 1-5 backend: Flyway V1 (session, quote(JSONB), event_log) | Testcontainers로 마이그레이션 + 저장/조회 테스트 |
-| 1-6 `adjusted_total` 계산 로직 | 단위 테스트: null total → null, adjustments 합산 |
+| [x] 1-6 `adjusted_total` 계산 로직 | 단위 테스트: null total → null, adjustments 합산 |
 
 ## Phase 2. LLM 기반 + 인터뷰 (spec §4.1, §6)
 
