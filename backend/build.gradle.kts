@@ -28,6 +28,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.flywaydb:flyway-database-postgresql")
 	implementation("org.springframework.ai:spring-ai-starter-model-openai")
+	implementation("com.networknt:json-schema-validator:3.0.1")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-actuator-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
@@ -45,6 +46,14 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
+	}
+}
+
+// 공유 스키마 원본(루트 schema/)을 그대로 classpath:schema/로 넣는다. 사본을 따로 두지 않는다.
+tasks.processResources {
+	from("../schema") {
+		include("*.schema.json")
+		into("schema")
 	}
 }
 
